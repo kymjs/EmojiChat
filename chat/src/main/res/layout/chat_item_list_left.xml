@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="6dp">
+
+
+    <TextView
+        android:id="@+id/chat_item_date"
+        style="@style/chat_item_date"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp">
+
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:id="@+id/chat_item_avatar"
+            style="@style/chat_item_avatar"
+            android:layout_alignParentLeft="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/chat_item_layout_content"
+            style="@style/chat_item_content"
+            android:layout_toRightOf="@id/chat_item_avatar"
+            android:background="@drawable/chat_from_bg_selector">
+
+            <TextView
+                android:id="@+id/chat_item_content_text"
+                style="@style/chat_item_text_content"/>
+
+            <ImageView
+                android:id="@+id/chat_item_content_image"
+                style="@style/chat_item_image_content"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/chat_item_fail"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/chat_item_layout_content"
+            android:background="@drawable/msg_state_fail_resend"
+            android:focusable="false"
+            android:visibility="gone"
+            />
+
+        <ProgressBar
+            android:id="@+id/chat_item_progress"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/chat_item_layout_content"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
