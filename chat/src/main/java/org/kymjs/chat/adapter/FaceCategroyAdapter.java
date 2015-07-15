@@ -3,12 +3,14 @@ package org.kymjs.chat.adapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
+import org.kymjs.chat.ChatFunctionFragment;
 import org.kymjs.chat.FacePageFragment;
 import org.kymjs.chat.OnOperationListener;
 import org.kymjs.chat.R;
 import org.kymjs.chat.emoji.EmojiPageFragment;
+import org.kymjs.chat.widget.KJChatKeyboard;
 import org.kymjs.chat.widget.PagerSlidingTabStrip;
 
 import java.util.List;
@@ -18,47 +20,53 @@ import java.util.List;
  *
  * @author kymjs (http://www.kymjs.com/)
  */
-public class FaceCategroyAdapter extends FragmentPagerAdapter implements
+public class FaceCategroyAdapter extends FragmentStatePagerAdapter implements
         PagerSlidingTabStrip.IconTabProvider {
+    private final int sMode;
 
     //每个item表示一个folder绝对路径，每个folder中存放的是一套face图片
     private List<String> datas;
     private OnOperationListener listener;
 
-    public FaceCategroyAdapter(FragmentManager fm) {
+    public FaceCategroyAdapter(FragmentManager fm, int mode) {
         super(fm);
+        sMode = mode;
     }
 
-    /**
-     * 底部表情分类的图标，这里为了省事就都返回同一个了
-     * @param position
-     * @return
-     */
     @Override
     public int getPageIconResId(int position) {
-        return R.drawable.face_btn_normal;
+        return R.drawable.icon;
     }
 
     @Override
     public int getCount() {
-        int count = datas == null ? 0 : datas.size();
-        //加1是因为有默认的emoji表情分类
-        return (count + 1);
+        if (sMode == KJChatKeyboard.LAYOUT_TYPE_FACE) {
+            int count = datas == null ? 0 : datas.size();
+            //加1是因为有默认的emoji表情分类
+            return (count + 1);
+        } else {
+            return 1;
+        }
     }
 
     @Override
     public Fragment getItem(int position) {
         Fragment f = null;
-        if (position == 0) {
-            f = new EmojiPageFragment();
-            ((EmojiPageFragment) f).setOnOperationListener(listener);
+        if (sMode == KJChatKeyboard.LAYOUT_TYPE_FACE) {
+            if (position == 0) {
+                f = new EmojiPageFragment();
+                ((EmojiPageFragment) f).setOnOperationListener(listener);
+            } else {
+                position--;
+                f = new FacePageFragment();
+                ((FacePageFragment) f).setOnOperationListener(listener);
+                Bundle bundle = new Bundle();
+                bundle.putString(FacePageFragment.FACE_FOLDER_PATH, datas.get(position));
+                f.setArguments(bundle);
+            }
         } else {
-            position--;
-            f = new FacePageFragment();
-            ((FacePageFragment) f).setOnOperationListener(listener);
-            Bundle bundle = new Bundle();
-            bundle.putString(FacePageFragment.FACE_FOLDER_PATH, datas.get(position));
-            f.setArguments(bundle);
+            f = new ChatFunctionFragment();
+            ((ChatFunctionFragment) f).setOnOperationListener(listener);
         }
         return f;
     }

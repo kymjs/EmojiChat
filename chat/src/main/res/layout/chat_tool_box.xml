@@ -19,29 +19,40 @@
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2dp"
             android:text="发送"
             android:textColor="#ffffffff"
             android:textSize="15sp"/>
 
-        <Button
+
+        <CheckBox
             android:id="@+id/toolbox_btn_face"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/face_btn_normal"
-            />
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_chat_face"
+            android:button="@null"/>
+
+        <CheckBox
+            android:id="@+id/toolbox_btn_more"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/toolbox_btn_face"
+            android:background="@drawable/selector_chat_more"
+            android:button="@null"/>
 
         <EditText
             android:id="@+id/toolbox_et_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/toolbox_btn_send"
-            android:layout_toRightOf="@+id/toolbox_btn_face"
+            android:layout_toRightOf="@+id/toolbox_btn_more"
             android:inputType="textMultiLine"
+            android:maxHeight="60dp"
             android:minHeight="35dp"
             android:singleLine="false"
             android:textSize="18sp"/>

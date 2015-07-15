@@ -83,11 +83,23 @@ public class ChatActivity extends KJActivity {
             public void selectedEmoji(Emojicon emoji) {
                 box.getEditTextBox().append(emoji.getValue());
             }
+
+            @Override
+            public void selectedFunction(int index) {
+                switch (index) {
+                    case 0:
+                        goToAlbum();
+                        break;
+                    case 1:
+                        ViewInject.toast("跳转相机");
+                        break;
+                }
+            }
         });
 
         List<String> faceCagegory = new ArrayList<>();
-        File faceList = FileUtils.getSaveFolder("chat");
-//        File faceList = new File("");
+//        File faceList = FileUtils.getSaveFolder("chat");
+        File faceList = new File("");
         if (faceList.isDirectory()) {
             File[] faceFolderArray = faceList.listFiles();
             for (File folder : faceFolderArray) {
@@ -179,7 +191,7 @@ public class ChatActivity extends KJActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && box.isShow()) {
-            box.hideFaceLayout();
+            box.hideLayout();
             return true;
         } else {
             return super.onKeyDown(keyCode, event);
@@ -235,7 +247,7 @@ public class ChatActivity extends KJActivity {
         return new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                box.hideFaceLayout();
+                box.hideLayout();
                 box.hideKeyboard(aty);
                 return false;
             }
