@@ -1,8 +1,7 @@
 =================
 
 ## EmojiChat简介
-**开发中，待补全**  
-一个聊天界面，包括大表情，图片，文字，Emojicon表情，自定义表情键盘，Emoji表情键盘等等……
+一个聊天界面，包括从网络下载大表情并使用，图片发送，文字发送，Emoji表情发送，自定义表情键盘，Emoji表情键盘，仿QQ功能键盘等等……
 
 ## 使用方法
 开发中，待补全
@@ -18,6 +17,11 @@
 
 我们会将捐助者信息公布在[开源实验室](http://www.kymjs.com)捐赠页，如果你有什么想说的话也可以留言给我。
 
+##运行截图
+![截图1](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_1.png)
+![截图2](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_2.png)
+![截图3](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_3.png)
+![截图4](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_4.png)
 
 ##开源协议
 ```
