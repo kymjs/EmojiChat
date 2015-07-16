@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -57,16 +56,12 @@ public class ChatActivity extends KJActivity {
         box.setOnOperationListener(new OnOperationListener() {
             @Override
             public void send(String content) {
-                if (TextUtils.isEmpty(content)) {
-                    goToAlbum();
-                } else {
-                    Message message = new Message(Message.MSG_TYPE_TEXT, Message.MSG_STATE_SUCCESS,
-                            "Tom", "avatar", "Jerry",
-                            "avatar", content, true, true, new Date());
-                    datas.add(message);
-                    adapter.refresh(datas);
-                    createReplayMsg(message);
-                }
+                Message message = new Message(Message.MSG_TYPE_TEXT, Message.MSG_STATE_SUCCESS,
+                        "Tom", "avatar", "Jerry",
+                        "avatar", content, true, true, new Date());
+                datas.add(message);
+                adapter.refresh(datas);
+                createReplayMsg(message);
             }
 
             @Override
@@ -130,18 +125,6 @@ public class ChatActivity extends KJActivity {
                 "http://static.oschina.net/uploads/space/2015/0611/103706_rpPc_1157342.png",
                 false, true, new Date(
                 System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 7));
-        Message message3 = new Message(Message.MSG_TYPE_TEXT,
-                Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "Haha", true, true, new Date(System.currentTimeMillis()
-                - (1000 * 60 * 60 * 24) * 7));
-        Message message4 = new Message(Message.MSG_TYPE_FACE,
-                Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "big3", false, true, new Date(System.currentTimeMillis()
-                - (1000 * 60 * 60 * 24) * 7));
-        Message message5 = new Message(Message.MSG_TYPE_FACE,
-                Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "big2", true, true, new Date(System.currentTimeMillis()
-                - (1000 * 60 * 60 * 24) * 6));
         Message message6 = new Message(Message.MSG_TYPE_TEXT,
                 Message.MSG_STATE_FAIL, "Tom", "avatar", "Jerry", "avatar",
                 "test send fail", true, false, new Date(
@@ -154,9 +137,6 @@ public class ChatActivity extends KJActivity {
         datas.add(message);
         datas.add(message1);
         datas.add(message2);
-        datas.add(message3);
-        datas.add(message4);
-        datas.add(message5);
         datas.add(message6);
         datas.add(message7);
 

@@ -35,7 +35,22 @@ public class FaceCategroyAdapter extends FragmentStatePagerAdapter implements
 
     @Override
     public int getPageIconResId(int position) {
-        return R.drawable.icon;
+        int id = 0;
+        switch (position) {
+            case 0:
+                id = R.drawable.icon_face_click;
+                break;
+            case 1:
+                id = R.drawable.big1;
+                break;
+            case 2:
+                id = R.drawable.cig2;
+                break;
+            case 3:
+                id = R.drawable.dig1;
+                break;
+        }
+        return id;
     }
 
     @Override

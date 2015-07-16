@@ -5,9 +5,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -130,26 +127,6 @@ public class KJChatKeyboard extends RelativeLayout implements
             @Override
             public void onClick(View v) {
                 hideLayout();
-            }
-        });
-        mEtMsg.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                if (TextUtils.isEmpty(s)) {
-                    mBtnSend.setText("图片");
-                } else {
-                    mBtnSend.setText("文字");
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
             }
         });
     }
