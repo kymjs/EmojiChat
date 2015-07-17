@@ -93,8 +93,8 @@ public class ChatActivity extends KJActivity {
         });
 
         List<String> faceCagegory = new ArrayList<>();
-//        File faceList = FileUtils.getSaveFolder("chat");
-        File faceList = new File("");
+        File faceList = FileUtils.getSaveFolder("chat");
+//        File faceList = new File("");
         if (faceList.isDirectory()) {
             File[] faceFolderArray = faceList.listFiles();
             for (File folder : faceFolderArray) {
