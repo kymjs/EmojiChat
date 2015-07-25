@@ -41,6 +41,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 聊天主界面
+ */
 public class ChatActivity extends KJActivity {
 
     public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0x1;
