@@ -1,4 +1,4 @@
-[![OSL](http://www.kymjs.com/image/logo_s.png)](http://www.kymjs.com/)
+[![OSL](http://www.kymjs.com/image/logo_s.png)](http://www.kymjs.com/works/)
 =================
 
 ## EmojiChat简介
