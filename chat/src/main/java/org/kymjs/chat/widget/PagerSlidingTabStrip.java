@@ -34,7 +34,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,7 +50,7 @@ import java.util.Locale;
 public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     public interface IconTabProvider {
-        public int getPageIconResId(int position);
+        void setPageIcon(int position, ImageView image);
     }
 
     // @formatter:off
@@ -230,15 +230,13 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tabCount = pager.getAdapter().getCount();
 
         for (int i = 0; i < tabCount; i++) {
-
             if (pager.getAdapter() instanceof IconTabProvider) {
-                addIconTab(i,
-                        ((IconTabProvider) pager.getAdapter())
-                                .getPageIconResId(i));
+                ImageView image = new ImageView(getContext());
+                ((IconTabProvider) pager.getAdapter()).setPageIcon(i, image);
+                addTab(i, image);
             } else {
                 addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
             }
-
         }
 
         updateTabStyles();
@@ -274,15 +272,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tab.setSingleLine();
 
         addTab(position, tab);
-    }
-
-    private void addIconTab(final int position, int resId) {
-
-        ImageButton tab = new ImageButton(getContext());
-        tab.setImageResource(resId);
-
-        addTab(position, tab);
-
     }
 
     private void addTab(final int position, View tab) {

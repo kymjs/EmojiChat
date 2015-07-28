@@ -15,10 +15,12 @@
  */
 package org.kymjs.chat.adapter;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.widget.ImageView;
 
 import org.kymjs.chat.ChatFunctionFragment;
 import org.kymjs.chat.FacePageFragment;
@@ -27,7 +29,9 @@ import org.kymjs.chat.R;
 import org.kymjs.chat.emoji.EmojiPageFragment;
 import org.kymjs.chat.widget.KJChatKeyboard;
 import org.kymjs.chat.widget.PagerSlidingTabStrip;
+import org.kymjs.kjframe.bitmap.BitmapCreate;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -49,23 +53,21 @@ public class FaceCategroyAdapter extends FragmentStatePagerAdapter implements
     }
 
     @Override
-    public int getPageIconResId(int position) {
-        int id = 0;
-        switch (position) {
-            case 0:
-                id = R.drawable.icon_face_click;
-                break;
-            case 1:
-                id = R.drawable.big1;
-                break;
-            case 2:
-                id = R.drawable.cig2;
-                break;
-            case 3:
-                id = R.drawable.dig1;
-                break;
+    public void setPageIcon(int position, ImageView image) {
+        if (position == 0) {
+            image.setImageResource(R.drawable.icon_face_click);
+            return;
         }
-        return id;
+        File file = new File(datas.get(position - 1));
+        String path = null;
+        for (int i = 0; i < file.list().length; i++) {
+            path = file.list()[i];
+            if (path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg")) {
+                break;
+            }
+        }
+        Bitmap bitmap = BitmapCreate.bitmapFromFile(file.getAbsolutePath() + "/" + path, 40, 40);
+        image.setImageBitmap(bitmap);
     }
 
     @Override
