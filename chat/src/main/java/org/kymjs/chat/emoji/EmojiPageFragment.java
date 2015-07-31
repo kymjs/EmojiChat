@@ -110,7 +110,12 @@ public class EmojiPageFragment extends SupportFragment {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     if (listener != null) {
-                        listener.selectedEmoji(itemDatas.get(position));
+                        Emojicon emoji = itemDatas.get(position);
+                        if (DisplayRules.isDeleteEmojicon(emoji)) {
+                            listener.selectedBackSpace(emoji);
+                        } else {
+                            listener.selectedEmoji(emoji);
+                        }
                     }
                 }
             });

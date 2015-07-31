@@ -31,6 +31,8 @@ public interface OnOperationListener {
     void selectedFace(Faceicon content);
 
     void selectedEmoji(Emojicon content);
+    
+    void selectedBackSpace(Emojicon back);
 
     void selectedFunction(int index);
 }

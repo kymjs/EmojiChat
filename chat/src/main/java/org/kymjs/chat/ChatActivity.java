@@ -29,6 +29,7 @@ import org.kymjs.chat.adapter.ChatAdapter;
 import org.kymjs.chat.bean.Emojicon;
 import org.kymjs.chat.bean.Faceicon;
 import org.kymjs.chat.bean.Message;
+import org.kymjs.chat.emoji.DisplayRules;
 import org.kymjs.chat.widget.KJChatKeyboard;
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.ui.ViewInject;
@@ -95,6 +96,11 @@ public class ChatActivity extends KJActivity {
             @Override
             public void selectedEmoji(Emojicon emoji) {
                 box.getEditTextBox().append(emoji.getValue());
+            }
+
+            @Override
+            public void selectedBackSpace(Emojicon back) {
+                DisplayRules.backspace(box.getEditTextBox());
             }
 
             @Override

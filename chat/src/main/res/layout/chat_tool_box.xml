@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/toolbox_btn_send"
             android:layout_toRightOf="@+id/toolbox_btn_more"
+            android:background="@color/emoji_keyboard_bg_light"
             android:inputType="textMultiLine"
             android:maxHeight="60dp"
             android:minHeight="35dp"
