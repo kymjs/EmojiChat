@@ -17,6 +17,10 @@ package org.kymjs.chat.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -33,6 +37,8 @@ import org.kymjs.kjframe.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author kymjs (http://www.kymjs.com/) on 6/8/15.
@@ -122,7 +128,7 @@ public class ChatAdapter extends BaseAdapter {
         if (data.getType() == Message.MSG_TYPE_TEXT) {
             holder.img_chatimage.setVisibility(View.GONE);
             holder.tv_chatcontent.setVisibility(View.VISIBLE);
-            holder.tv_chatcontent.setText(data.getContent());
+            holder.tv_chatcontent = handleText(holder.tv_chatcontent, data.getContent());
         } else {
             holder.tv_chatcontent.setVisibility(View.GONE);
             holder.img_chatimage.setVisibility(View.VISIBLE);
@@ -202,5 +208,33 @@ public class ChatAdapter extends BaseAdapter {
         ImageView img_sendfail;
         ProgressBar progress;
         RelativeLayout layout_content;
+    }
+
+    /**
+     * 让TextView自动解析URL并高亮设置点击链接
+     *
+     * @param tv      TextView
+     * @param content 要高亮的内容
+     * @return 已经解析之后的TextView
+     */
+    public static TextView handleText(TextView tv, String content) {
+        SpannableString sp = new SpannableString(content);
+
+        Pattern pattern = Pattern
+                .compile("http://[\\S\\.]+[:\\d]?[/\\S]+\\??[\\S=\\S&?]+[^\u4e00-\u9fa5]");
+        Matcher matcher = pattern.matcher(content);
+
+        while (matcher.find()) {
+            int start = content.indexOf(matcher.group());
+            int end = content.length() + start;
+            if (start >= 0) {
+                sp.setSpan(new URLSpan(matcher.group()), start, end, Spanned
+                        .SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
+        tv.setText(sp);
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        return tv;
     }
 }
