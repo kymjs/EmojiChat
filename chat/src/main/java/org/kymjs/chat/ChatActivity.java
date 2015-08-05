@@ -142,8 +142,8 @@ public class ChatActivity extends KJActivity {
                 - (1000 * 60 * 60 * 24) * 8));
         Message message1 = new Message(Message.MSG_TYPE_TEXT,
                 Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "Hello World", true, true, new Date(System.currentTimeMillis()
-                - (1000 * 60 * 60 * 24) * 8));
+                "从8月5号以后的版本支持链接高亮喔:http://www.kymjs.com 支持http、https、svn、ftp开头的链接",
+                true, true, new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 8));
         Message message2 = new Message(Message.MSG_TYPE_PHOTO,
                 Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
                 "http://static.oschina.net/uploads/space/2015/0611/103706_rpPc_1157342.png",

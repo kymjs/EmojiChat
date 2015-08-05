@@ -211,7 +211,8 @@ public class ChatAdapter extends BaseAdapter {
     }
 
     /**
-     * 让TextView自动解析URL并高亮设置点击链接
+     * 让TextView自动解析URL并高亮设置点击链接(链接的开头可以没有空格，但是结尾必须有空格)
+     * Note:深深的体会到，写一个正则不容易啊
      *
      * @param tv      TextView
      * @param content 要高亮的内容
@@ -221,15 +222,16 @@ public class ChatAdapter extends BaseAdapter {
         SpannableString sp = new SpannableString(content);
 
         Pattern pattern = Pattern
-                .compile("http://[\\S\\.]+[:\\d]?[/\\S]+\\??[\\S=\\S&?]+[^\u4e00-\u9fa5]");
+                .compile("(http|https|ftp|svn)://[\\p{Alnum}\\.]+/?\\p{Alnum}*\\??" +
+                        "(\\p{Alnum}*=\\p{Alnum}*&?)*");
         Matcher matcher = pattern.matcher(content);
 
         while (matcher.find()) {
-            int start = content.indexOf(matcher.group());
-            int end = content.length() + start;
+            String url = matcher.group();
+            int start = content.indexOf(url);
             if (start >= 0) {
-                sp.setSpan(new URLSpan(matcher.group()), start, end, Spanned
-                        .SPAN_EXCLUSIVE_EXCLUSIVE);
+                int end = start + url.length();
+                sp.setSpan(new URLSpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
 
