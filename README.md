@@ -12,6 +12,7 @@
 5、聊天类型定义，支持文字，图片，文字+Emoji，大表情(本质是图片)。你可以自己扩展支持定位、视频、语音等。见[ChatAdapter](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/adapter/ChatAdapter.java)，[KJChatKeyboard](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/widget/KJChatKeyboard.java)  
 6、如果你想测试大表情，请先复制[表情包](https://github.com/kymjs/EmojiChat/tree/master/bigFaceImage)中的chat文件夹(包括其中的全部表情)到SD卡根目录，并修改[ChatActivity的96行](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)的注释与97行替换  
 7、8月1日更新：每个emoji表情页的最后添加删除图标。
+8、8月5日更新：支持聊天内容超链接高亮以及点击链接跳到相应url中
 
 ## 关于
 * QQ 群[257053751](http://jq.qq.com/?_wv=1027&k=WoM2Aa)(开发者群1)，[201055521](http://jq.qq.com/?_wv=1027&k=MBVdpK)(开发者群2)<br>

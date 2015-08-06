@@ -109,12 +109,17 @@ public class KJChatKeyboard extends RelativeLayout implements
         mKeyboardHelper = new SoftKeyboardStateHelper(((Activity) getContext())
                 .getWindow().getDecorView());
         mKeyboardHelper.addSoftKeyboardStateListener(this);
-        emojitf = Typeface.createFromAsset(context.getAssets(), "fonts/emoji.ttf");
+        try {
+            emojitf = Typeface.createFromAsset(context.getAssets(), "fonts/emoji.ttf");
+        } catch (RuntimeException e) {
+        }
     }
 
     private void initWidget() {
         mEtMsg = (EditText) findViewById(R.id.toolbox_et_message);
-        mEtMsg.setTypeface(emojitf);
+        if (emojitf != null) {
+            mEtMsg.setTypeface(emojitf);
+        }
         mBtnSend = (Button) findViewById(R.id.toolbox_btn_send);
         mBtnFace = (CheckBox) findViewById(R.id.toolbox_btn_face);
         mBtnMore = (CheckBox) findViewById(R.id.toolbox_btn_more);

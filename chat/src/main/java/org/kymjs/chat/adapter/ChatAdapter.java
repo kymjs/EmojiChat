@@ -59,7 +59,10 @@ public class ChatAdapter extends BaseAdapter {
         this.datas = datas;
         kjb = new KJBitmap();
         this.listener = listener;
-        emojitf = Typeface.createFromAsset(cxt.getAssets(), "fonts/emoji.ttf");
+        try {
+            emojitf = Typeface.createFromAsset(cxt.getAssets(), "fonts/emoji.ttf");
+        } catch (RuntimeException e) {
+        }
     }
 
     public void refresh(List<Message> datas) {
@@ -122,7 +125,9 @@ public class ChatAdapter extends BaseAdapter {
                 "HH:mm:ss")));
         holder.tv_date.setVisibility(View.VISIBLE);
 
-        holder.tv_chatcontent.setTypeface(emojitf);
+        if (emojitf != null) {
+            holder.tv_chatcontent.setTypeface(emojitf);
+        }
 
         //如果是文本类型，则隐藏图片，如果是图片则隐藏文本
         if (data.getType() == Message.MSG_TYPE_TEXT) {
@@ -220,10 +225,10 @@ public class ChatAdapter extends BaseAdapter {
      */
     public static TextView handleText(TextView tv, String content) {
         SpannableString sp = new SpannableString(content);
-
-        Pattern pattern = Pattern
-                .compile("(http|https|ftp|svn)://[\\p{Alnum}\\.]+/?\\p{Alnum}*\\??" +
-                        "(\\p{Alnum}*=\\p{Alnum}*&?)*");
+        //妈蛋，又碰上一个坑，在Android中的\p{Alnum}和Java中的\p{Alnum}不是同一个值，非得要我换成[a-zA-Z0-9]才行
+        //这鸟问题折腾了我四五个小时，明明Java工程中运行良好，写到android中就不正常
+        Pattern pattern = Pattern.compile("(http|https|ftp|svn)://([a-zA-Z0-9]+[/?.?])" +
+                "+[a-zA-Z0-9]*\\??([a-zA-Z0-9]*=[a-zA-Z0-9]*&?)*");
         Matcher matcher = pattern.matcher(content);
 
         while (matcher.find()) {
