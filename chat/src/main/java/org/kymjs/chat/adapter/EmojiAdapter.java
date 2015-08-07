@@ -36,13 +36,19 @@ public class EmojiAdapter extends KJAdapter<Emojicon> {
 
     public EmojiAdapter(AbsListView view, Collection<Emojicon> mDatas) {
         super(view, mDatas, R.layout.chat_item_emoji);
-        emojitf = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/emoji.ttf");
+        try {
+            emojitf = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/emoji.ttf");
+        } catch (Exception e) {
+            emojitf = null;
+        }
     }
 
     @Override
     public void convert(AdapterHolder adapterHolder, Emojicon emojicon, boolean b) {
         TextView itemTvEmoji = adapterHolder.getView(R.id.itemEmoji);
-        itemTvEmoji.setTypeface(emojitf);
+        if (emojitf != null) {
+            itemTvEmoji.setTypeface(emojitf);
+        }
         itemTvEmoji.setText(emojicon.getValue());
     }
 }
