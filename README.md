@@ -15,7 +15,7 @@
 6、如果你想测试大表情，请先复制[表情包](https://github.com/kymjs/EmojiChat/tree/master/bigFaceImage)中的chat文件夹(包括其中的全部表情)到SD卡根目录，并修改[ChatActivity的96行](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)的注释与97行替换    
 
 ##附加说明
-也许在你惊叹本项目实现emoji表情输入之简易的同时，又在感慨需要引入一个12.2M大小的表情包的成本太过大。是的，如果你希望能使用一个精简版的表情包，可以私聊我(QQ766136833)。它是我从八十七万行纯文本中一行一行精简下来的，精简版表情包大小是1.6M，包含165个常用emoji图标(原项目包含822个)。   
+也许在你惊叹本项目实现emoji表情输入之简易的同时，又在感慨需要引入一个12.2M大小的表情包的成本太过大(某些旧版本手机无法支持这么大的表情包)。是的，如果你希望能使用一个精简版的表情包，可以私聊我(QQ766136833)。它是我从八十七万行纯文本中一行一行精简下来的，精简版表情包大小是1.6M，包含165个常用emoji图标(原项目包含822个)。   
 
 ## 关于
 自我介绍：[张涛就是我](http://blog.kymjs.com/about)  
