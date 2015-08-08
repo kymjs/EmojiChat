@@ -142,7 +142,7 @@ public class ChatActivity extends KJActivity {
                 - (1000 * 60 * 60 * 24) * 8));
         Message message1 = new Message(Message.MSG_TYPE_TEXT,
                 Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "从8月5号以后的版本支持链接高亮喔:http://www.kymjs.com支持http、https、svn、ftp开头的链接",
+                "以后的版本支持链接高亮喔:http://www.kymjs.com支持http、https、svn、ftp开头的链接",
                 true, true, new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 8));
         Message message2 = new Message(Message.MSG_TYPE_PHOTO,
                 Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",

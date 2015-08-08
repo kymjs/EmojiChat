@@ -17,6 +17,7 @@ package org.kymjs.chat.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -59,9 +60,11 @@ public class ChatAdapter extends BaseAdapter {
         this.datas = datas;
         kjb = new KJBitmap();
         this.listener = listener;
-        try {
-            emojitf = Typeface.createFromAsset(cxt.getAssets(), "fonts/emoji.ttf");
-        } catch (RuntimeException e) {
+        if (!"smartisan".equals(Build.MANUFACTURER)) {
+            try {
+                emojitf = Typeface.createFromAsset(cxt.getAssets(), "fonts/emoji.ttf");
+            } catch (Exception e) {
+            }
         }
     }
 

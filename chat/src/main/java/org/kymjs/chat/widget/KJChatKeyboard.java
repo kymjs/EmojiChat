@@ -18,6 +18,7 @@ package org.kymjs.chat.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -109,9 +110,11 @@ public class KJChatKeyboard extends RelativeLayout implements
         mKeyboardHelper = new SoftKeyboardStateHelper(((Activity) getContext())
                 .getWindow().getDecorView());
         mKeyboardHelper.addSoftKeyboardStateListener(this);
-        try {
-            emojitf = Typeface.createFromAsset(context.getAssets(), "fonts/emoji.ttf");
-        } catch (RuntimeException e) {
+        if (!"smartisan".equals(Build.MANUFACTURER)) {
+            try {
+                emojitf = Typeface.createFromAsset(context.getAssets(), "fonts/emoji.ttf");
+            } catch (Exception e) {
+            }
         }
     }
 

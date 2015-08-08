@@ -16,6 +16,7 @@
 package org.kymjs.chat.adapter;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
@@ -36,10 +37,12 @@ public class EmojiAdapter extends KJAdapter<Emojicon> {
 
     public EmojiAdapter(AbsListView view, Collection<Emojicon> mDatas) {
         super(view, mDatas, R.layout.chat_item_emoji);
-        try {
-            emojitf = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/emoji.ttf");
-        } catch (Exception e) {
-            emojitf = null;
+        if (!"smartisan".equals(Build.MANUFACTURER)) {
+            try {
+                emojitf = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/emoji" +
+                        ".ttf");
+            } catch (Exception e) {
+            }
         }
     }
 
