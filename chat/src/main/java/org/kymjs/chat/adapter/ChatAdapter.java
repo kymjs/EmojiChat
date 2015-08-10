@@ -18,10 +18,6 @@ package org.kymjs.chat.adapter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.URLSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -32,14 +28,13 @@ import android.widget.TextView;
 
 import org.kymjs.chat.ChatActivity.OnChatItemClickListener;
 import org.kymjs.chat.R;
+import org.kymjs.chat.UrlUtils;
 import org.kymjs.chat.bean.Message;
 import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author kymjs (http://www.kymjs.com/) on 6/8/15.
@@ -136,7 +131,13 @@ public class ChatAdapter extends BaseAdapter {
         if (data.getType() == Message.MSG_TYPE_TEXT) {
             holder.img_chatimage.setVisibility(View.GONE);
             holder.tv_chatcontent.setVisibility(View.VISIBLE);
-            holder.tv_chatcontent = handleText(holder.tv_chatcontent, data.getContent());
+            if (data.getContent().contains("href")) {
+                holder.tv_chatcontent = UrlUtils.handleHtmlText(holder.tv_chatcontent, data
+                        .getContent());
+            } else {
+                holder.tv_chatcontent = UrlUtils.handleText(holder.tv_chatcontent, data
+                        .getContent());
+            }
         } else {
             holder.tv_chatcontent.setVisibility(View.GONE);
             holder.img_chatimage.setVisibility(View.VISIBLE);
@@ -216,35 +217,5 @@ public class ChatAdapter extends BaseAdapter {
         ImageView img_sendfail;
         ProgressBar progress;
         RelativeLayout layout_content;
-    }
-
-    /**
-     * 让TextView自动解析URL并高亮设置点击链接(链接的开头可以没有空格，但是结尾必须有空格)
-     * Note:深深的体会到，写一个正则不容易啊
-     *
-     * @param tv      TextView
-     * @param content 要高亮的内容
-     * @return 已经解析之后的TextView
-     */
-    public static TextView handleText(TextView tv, String content) {
-        SpannableString sp = new SpannableString(content);
-        //妈蛋，又碰上一个坑，在Android中的\p{Alnum}和Java中的\p{Alnum}不是同一个值，非得要我换成[a-zA-Z0-9]才行
-        //这鸟问题折腾了我四五个小时，明明Java工程中运行良好，写到android中就不正常
-        Pattern pattern = Pattern.compile("(http|https|ftp|svn)://([a-zA-Z0-9]+[/?.?])" +
-                "+[a-zA-Z0-9]*\\??([a-zA-Z0-9]*=[a-zA-Z0-9]*&?)*");
-        Matcher matcher = pattern.matcher(content);
-
-        while (matcher.find()) {
-            String url = matcher.group();
-            int start = content.indexOf(url);
-            if (start >= 0) {
-                int end = start + url.length();
-                sp.setSpan(new URLSpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-
-        tv.setText(sp);
-        tv.setMovementMethod(LinkMovementMethod.getInstance());
-        return tv;
     }
 }

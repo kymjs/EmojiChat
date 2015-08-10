@@ -155,7 +155,7 @@ public class ChatActivity extends KJActivity {
                 System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 6));
         Message message7 = new Message(Message.MSG_TYPE_TEXT,
                 Message.MSG_STATE_SENDING, "Tom", "avatar", "Jerry", "avatar",
-                "test sending", true, true, new Date(System.currentTimeMillis()
+                "<a href=\"http://kymjs.com\">自定义链接</a>也是支持的", true, true, new Date(System.currentTimeMillis()
                 - (1000 * 60 * 60 * 24) * 6));
 
         datas.add(message);

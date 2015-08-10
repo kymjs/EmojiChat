@@ -5,6 +5,7 @@
 一个聊天界面，包括从网络下载大表情并使用，图片发送，文字发送，Emoji表情发送，自定义表情键盘，Emoji表情键盘，仿QQ功能键盘等等……  
 *8月1日更新*：每个emoji表情页的最后添加删除图标。  
 *8月5日更新*：支持聊天内容超链接高亮以及点击链接跳到相应url中。  
+*8月10日更新*：再添加一种html链接高亮，支持在聊天中发送html标签的跳转信息，支持链接样式自定义(链接颜色，下划线，跳转链接的处理)。  
 
 ## 使用方法
 1、修改大表情底部图标，见[FaceCategroyAdapter](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/adapter/FaceCategroyAdapter.java)  
@@ -29,6 +30,7 @@
 ![截图3](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_3.png)
 ![截图4](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_4.png)
 ![截图5](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_5.png)
+![截图6](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_6.png)
 
 ##开源协议
 ```
