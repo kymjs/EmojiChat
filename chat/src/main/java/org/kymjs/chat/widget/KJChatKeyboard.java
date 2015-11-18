@@ -17,8 +17,6 @@ package org.kymjs.chat.widget;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -76,7 +74,6 @@ public class KJChatKeyboard extends RelativeLayout implements
     private OnOperationListener listener;
     private OnToolBoxListener mFaceListener;
     private SoftKeyboardStateHelper mKeyboardHelper;
-    private Typeface emojitf;
 
     public KJChatKeyboard(Context context) {
         super(context);
@@ -110,19 +107,10 @@ public class KJChatKeyboard extends RelativeLayout implements
         mKeyboardHelper = new SoftKeyboardStateHelper(((Activity) getContext())
                 .getWindow().getDecorView());
         mKeyboardHelper.addSoftKeyboardStateListener(this);
-        if (!"smartisan".equals(Build.MANUFACTURER)) {
-            try {
-                emojitf = Typeface.createFromAsset(context.getAssets(), "fonts/emoji.ttf");
-            } catch (Exception e) {
-            }
-        }
     }
 
     private void initWidget() {
         mEtMsg = (EditText) findViewById(R.id.toolbox_et_message);
-        if (emojitf != null) {
-            mEtMsg.setTypeface(emojitf);
-        }
         mBtnSend = (Button) findViewById(R.id.toolbox_btn_send);
         mBtnFace = (CheckBox) findViewById(R.id.toolbox_btn_face);
         mBtnMore = (CheckBox) findViewById(R.id.toolbox_btn_more);

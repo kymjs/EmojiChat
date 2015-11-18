@@ -29,7 +29,7 @@
             android:layout_toLeftOf="@id/chat_item_avatar"
             android:background="@drawable/chat_to_bg_selector">
 
-            <TextView
+            <com.rockerhieu.emojicon.EmojiconTextView
                 android:id="@+id/chat_item_content_text"
                 style="@style/chat_item_text_content"/>
 
@@ -46,8 +46,7 @@
             android:layout_toLeftOf="@+id/chat_item_layout_content"
             android:background="@drawable/msg_state_fail_resend"
             android:focusable="false"
-            android:visibility="gone"
-            />
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/chat_item_progress"
@@ -56,8 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/chat_item_layout_content"
-            android:visibility="gone"
-            />
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </LinearLayout>

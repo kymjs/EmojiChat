@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="200dp"
+              android:layout_height="160dp"
               android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/frag_pager_face"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="150dp">
     </android.support.v4.view.ViewPager>
 
     <RadioGroup

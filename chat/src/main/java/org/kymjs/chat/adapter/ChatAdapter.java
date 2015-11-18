@@ -16,8 +16,6 @@
 package org.kymjs.chat.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -45,7 +43,6 @@ public class ChatAdapter extends BaseAdapter {
     private List<Message> datas = null;
     private KJBitmap kjb;
     private OnChatItemClickListener listener;
-    private Typeface emojitf;
 
     public ChatAdapter(Context cxt, List<Message> datas, OnChatItemClickListener listener) {
         this.cxt = cxt;
@@ -55,17 +52,11 @@ public class ChatAdapter extends BaseAdapter {
         this.datas = datas;
         kjb = new KJBitmap();
         this.listener = listener;
-        if (!"smartisan".equals(Build.MANUFACTURER)) {
-            try {
-                emojitf = Typeface.createFromAsset(cxt.getAssets(), "fonts/emoji.ttf");
-            } catch (Exception e) {
-            }
-        }
     }
 
     public void refresh(List<Message> datas) {
         if (datas == null) {
-            datas = new ArrayList<Message>(0);
+            datas = new ArrayList<>(0);
         }
         this.datas = datas;
         notifyDataSetChanged();
@@ -122,10 +113,6 @@ public class ChatAdapter extends BaseAdapter {
         holder.tv_date.setText(StringUtils.friendlyTime(StringUtils.getDataTime("yyyy-MM-dd " +
                 "HH:mm:ss")));
         holder.tv_date.setVisibility(View.VISIBLE);
-
-        if (emojitf != null) {
-            holder.tv_chatcontent.setTypeface(emojitf);
-        }
 
         //如果是文本类型，则隐藏图片，如果是图片则隐藏文本
         if (data.getType() == Message.MSG_TYPE_TEXT) {

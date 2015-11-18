@@ -6,6 +6,7 @@
 *8月1日更新*：每个emoji表情页的最后添加删除图标。  
 *8月5日更新*：支持聊天内容超链接高亮以及点击链接跳到相应url中。  
 *8月10日更新*：再添加一种html链接高亮，支持在聊天中发送html标签的跳转信息，支持链接样式自定义(链接颜色，下划线，跳转链接的处理)。  
+*11月18日*：使用依赖库[emojicon](https://github.com/rockerhieu/emojicon)作为emoji图标显示方案，修复了之前在很老旧版本的手机上会字体读取异常的问题
 
 ## 使用方法
 1、修改大表情底部图标，见[FaceCategroyAdapter](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/adapter/FaceCategroyAdapter.java)  
@@ -13,10 +14,7 @@
 3、功能键盘(图片、拍照)修改，见[ChatFunctionFragment](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatFunctionFragment.java)  
 4、聊天键盘的点击事件修改，见[ChatActivity中56行开始监听器内](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)  
 5、聊天类型定义，支持文字，图片，文字+Emoji，大表情(本质是图片)。你可以自己扩展支持定位、视频、语音等。见[ChatAdapter](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/adapter/ChatAdapter.java)，[KJChatKeyboard](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/widget/KJChatKeyboard.java)  
-6、如果你想测试大表情，请先复制[表情包](https://github.com/kymjs/EmojiChat/tree/master/bigFaceImage)中的chat文件夹(包括其中的全部表情)到SD卡根目录，并修改[ChatActivity的96行](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)的注释与97行替换    
-
-##附加说明
-也许在你惊叹本项目实现emoji表情输入之简易的同时，又在感慨需要引入一个12.2M大小的表情包的成本太过大(某些旧版本手机无法支持这么大的表情包)。是的，如果你希望能使用一个精简版的表情包，可以私聊我(QQ766136833)。它是我从八十七万行纯文本中一行一行精简下来的，售价200，精简版表情包大小是2.6M，包含165个常用emoji图标(原项目包含822个)。   
+6、如果你想测试大表情，请先复制[表情包](https://github.com/kymjs/EmojiChat/tree/master/bigFaceImage)中的chat文件夹(包括其中的全部表情)到SD卡根目录，并修改[ChatActivity的96行](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)的注释与97行替换     
 
 ## 关于
 自我介绍：[张涛就是我](http://blog.kymjs.com/about)  
