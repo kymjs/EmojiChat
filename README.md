@@ -1,4 +1,4 @@
-[![OSL](http://www.kymjs.com/image/logo_s.png)](http://www.kymjs.com/works/)
+[![OSL](https://kymjs.com/qiniu/image/logo3.png)](https://www.kymjs.com/works/)  
 =================
 
 ## EmojiChat简介
@@ -17,10 +17,7 @@
 6、如果你想测试大表情，请先复制[表情包](https://github.com/kymjs/EmojiChat/tree/master/bigFaceImage)中的chat文件夹(包括其中的全部表情)到SD卡根目录，并修改[ChatActivity的96行](https://github.com/kymjs/EmojiChat/blob/master/chat/src/main/java/org/kymjs/chat/ChatActivity.java)的注释与97行替换     
 
 ## 关于
-自我介绍：[张涛就是我](http://blog.kymjs.com/about)  
-* QQ 群[257053751](http://jq.qq.com/?_wv=1027&k=WoM2Aa)(开发者群1)，[201055521](http://jq.qq.com/?_wv=1027&k=MBVdpK)(开发者群2)<br>
-* 更多我的开源项目：[开源实验室](http://www.kymjs.com/)
-* blog：http://blog.kymjs.com/  
+* 更多我的开源项目：[开源实验室开放项目](https://www.kymjs.com/)
 
 ##运行截图
 ![截图1](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_1.png)
@@ -30,7 +27,7 @@
 ![截图5](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_5.png)
 ![截图6](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_6.png)
 
-##开源协议
+## 开源协议
 ```
  Copyright (C) 2014, 张涛
  
