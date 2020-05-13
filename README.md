@@ -20,12 +20,12 @@
 * 更多我的开源项目：[开源实验室开放项目](https://www.kymjs.com/)
 
 ##运行截图
-![截图1](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_1.png)
-![截图2](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_2.png)
-![截图3](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_3.png)
-![截图4](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_4.png)
-![截图5](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_5.png)
-![截图6](https://github.com/kymjs/EmojiChat/blob/master/screen_shots/Screenshot_6.png)
+![截图1](http://kymjs.com/qiniu/image/emojichat/Screenshot_1.png)
+![截图2](http://kymjs.com/qiniu/image/emojichat/Screenshot_2.png)
+![截图3](http://kymjs.com/qiniu/image/emojichat/Screenshot_3.png)
+![截图4](http://kymjs.com/qiniu/image/emojichat/Screenshot_4.png)
+![截图5](http://kymjs.com/qiniu/image/emojichat/Screenshot_5.png)
+![截图6](http://kymjs.com/qiniu/image/emojichat/Screenshot_6.png)
 
 ## 开源协议
 ```
