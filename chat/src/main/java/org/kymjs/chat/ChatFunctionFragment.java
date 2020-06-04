@@ -21,8 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import org.kymjs.kjframe.ui.SupportFragment;
-
 /**
  * 聊天键盘功能界面
  *
@@ -47,22 +45,22 @@ public class ChatFunctionFragment extends SupportFragment {
         layout1 = (LinearLayout) parentView.findViewById(R.id.chat_menu_images);
         layout2 = (LinearLayout) parentView.findViewById(R.id.chat_menu_photo);
 
-        layout1.setOnClickListener(this);
-        layout2.setOnClickListener(this);
+        layout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickMenu(0);
+            }
+        });
+        layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickMenu(1);
+            }
+        });
     }
 
     public void setOnOperationListener(OnOperationListener onOperationListener) {
         this.listener = onOperationListener;
-    }
-
-    @Override
-    protected void widgetClick(View v) {
-        super.widgetClick(v);
-        if (v == layout1) {
-            clickMenu(0);
-        } else if (v == layout2) {
-            clickMenu(1);
-        }
     }
 
     private void clickMenu(int i) {

@@ -19,9 +19,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,10 +33,11 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import org.kymjs.chat.adapter.FaceAdapter;
 import org.kymjs.chat.bean.Faceicon;
-import org.kymjs.kjframe.ui.SupportFragment;
-import org.kymjs.kjframe.utils.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class FacePageFragment extends SupportFragment {
     protected void initData() {
         super.initData();
         String folderPath = getArguments().getString(FACE_FOLDER_PATH);
-        if (StringUtils.isEmpty(folderPath)) {
+        if (TextUtils.isEmpty(folderPath)) {
             folderPath = "";
             Log.e("kymjs", getClass().getSimpleName() + " line 69, folder path is empty");
         }
@@ -159,7 +158,7 @@ public class FacePageFragment extends SupportFragment {
 
         PagerAdapter facePagerAdapter = new FacePagerAdapter(allPageViews);
         mPagerFace.setAdapter(facePagerAdapter);
-        mPagerFace.setOnPageChangeListener(new OnPageChangeListener() {
+        mPagerFace.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int index) {

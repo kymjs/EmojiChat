@@ -16,11 +16,13 @@
 package org.kymjs.chat.adapter;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import org.kymjs.chat.ChatFunctionFragment;
 import org.kymjs.chat.FacePageFragment;
@@ -29,7 +31,6 @@ import org.kymjs.chat.R;
 import org.kymjs.chat.emoji.EmojiPageFragment;
 import org.kymjs.chat.widget.KJChatKeyboard;
 import org.kymjs.chat.widget.PagerSlidingTabStrip;
-import org.kymjs.kjframe.bitmap.BitmapCreate;
 
 import java.io.File;
 import java.util.List;
@@ -66,7 +67,7 @@ public class FaceCategroyAdapter extends FragmentStatePagerAdapter implements
                 break;
             }
         }
-        Bitmap bitmap = BitmapCreate.bitmapFromFile(file.getAbsolutePath() + "/" + path, 40, 40);
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath() + "/" + path);
         image.setImageBitmap(bitmap);
     }
 

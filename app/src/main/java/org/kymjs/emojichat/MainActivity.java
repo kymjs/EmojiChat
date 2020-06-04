@@ -15,14 +15,24 @@
  */
 package org.kymjs.emojichat;
 
-import org.kymjs.chat.ChatActivity;
-import org.kymjs.kjframe.KJActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 
-public class MainActivity extends KJActivity {
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.kymjs.chat.ChatActivity;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    public void setRootView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        showActivity(aty, ChatActivity.class);
+    }
+
+    public void click(View view) {
+        startActivity(new Intent(this, ChatActivity.class));
     }
 }

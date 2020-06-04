@@ -15,35 +15,72 @@
  */
 package org.kymjs.chat.adapter;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import org.kymjs.chat.R;
 import org.kymjs.chat.bean.Faceicon;
-import org.kymjs.kjframe.KJBitmap;
-import org.kymjs.kjframe.widget.AdapterHolder;
-import org.kymjs.kjframe.widget.KJAdapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 表情区域GridView的适配器
  *
  * @author kymjs (http://www.kymjs.com/)
  */
-public class FaceAdapter extends KJAdapter<Faceicon> {
-    private KJBitmap kjb = new KJBitmap();
-    
+public class FaceAdapter extends BaseAdapter {
+    private List<Faceicon> mDatas;
+    private Context context;
+
     public FaceAdapter(AbsListView view, Collection<Faceicon> mDatas) {
-        super(view, mDatas, R.layout.chat_item_face);
+        super();
+        this.mDatas = new ArrayList<>(mDatas);
+        context = view.getContext();
     }
 
     @Override
-    public void convert(AdapterHolder adapterHolder, Faceicon data, boolean b) {
-        ImageView view = adapterHolder.getView(R.id.itemImage);
-//        int id = view.getResources().getIdentifier(s,
-//                "drawable", view.getContext().getPackageName());
-//        view.setImageResource(id);
-        kjb.display(view, data.getPath());
+    public int getCount() {
+        if (mDatas == null) {
+            return 0;
+        } else {
+            return mDatas.size();
+        }
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mDatas.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = View.inflate(context, R.layout.chat_item_face, null);
+            viewHolder = new ViewHolder();
+            viewHolder.imageView = convertView.findViewById(R.id.itemImage);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        Glide.with(context).load(mDatas.get(position)).into(viewHolder.imageView);
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        ImageView imageView;
     }
 }

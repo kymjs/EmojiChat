@@ -15,30 +15,70 @@
  */
 package org.kymjs.chat.adapter;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.kymjs.chat.R;
 import org.kymjs.chat.bean.Emojicon;
-import org.kymjs.kjframe.widget.AdapterHolder;
-import org.kymjs.kjframe.widget.KJAdapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * emoji表情界面gridview适配器
  *
  * @author kymjs (http://www.kymjs.com/) on 6/8/15.
  */
-public class EmojiAdapter extends KJAdapter<Emojicon> {
+public class EmojiAdapter extends BaseAdapter {
+    private List<Emojicon> mDatas;
+    private Context context;
 
     public EmojiAdapter(AbsListView view, Collection<Emojicon> mDatas) {
-        super(view, mDatas, R.layout.chat_item_emoji);
+        super();
+        this.mDatas = new ArrayList<>(mDatas);
+        context = view.getContext();
     }
 
     @Override
-    public void convert(AdapterHolder adapterHolder, Emojicon emojicon, boolean b) {
-        TextView itemTvEmoji = adapterHolder.getView(R.id.itemEmoji);
-        itemTvEmoji.setText(emojicon.getValue());
+    public int getCount() {
+        if (mDatas == null) {
+            return 0;
+        } else {
+            return mDatas.size();
+        }
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mDatas.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = View.inflate(context, R.layout.chat_item_emoji, null);
+            viewHolder = new ViewHolder();
+            viewHolder.itemTvEmoji = convertView.findViewById(R.id.itemEmoji);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        viewHolder.itemTvEmoji.setText(mDatas.get(position).getValue());
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView itemTvEmoji;
     }
 }

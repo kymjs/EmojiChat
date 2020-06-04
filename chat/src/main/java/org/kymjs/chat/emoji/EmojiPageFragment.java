@@ -15,10 +15,7 @@
  */
 package org.kymjs.chat.emoji;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +27,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import org.kymjs.chat.OnOperationListener;
 import org.kymjs.chat.R;
+import org.kymjs.chat.SupportFragment;
 import org.kymjs.chat.adapter.EmojiAdapter;
 import org.kymjs.chat.bean.Emojicon;
-import org.kymjs.kjframe.ui.SupportFragment;
 
 import java.util.List;
 
@@ -50,7 +50,6 @@ public class EmojiPageFragment extends SupportFragment {
     private ViewPager mPagerFace;
     private LinearLayout pagePointLayout;
 
-    private Activity aty;
     private GridView[] allPageViews;
     private RadioButton[] pointViews;
     private OnOperationListener listener;
@@ -59,7 +58,6 @@ public class EmojiPageFragment extends SupportFragment {
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        aty = getActivity();
         View rootView = layoutInflater.inflate(R.layout.chat_frag_face, null);
         return rootView;
     }
@@ -88,7 +86,7 @@ public class EmojiPageFragment extends SupportFragment {
             int end = (start + ITEM_PAGE_COUNT) > total ? total
                     : (start + ITEM_PAGE_COUNT);
             final List<Emojicon> itemDatas = datas.subList(start, end);
-            GridView view = new GridView(aty);
+            GridView view = new GridView(rootView.getContext());
             EmojiAdapter faceAdapter = new EmojiAdapter(view, itemDatas);
 
             view.setNumColumns(7);
@@ -121,7 +119,7 @@ public class EmojiPageFragment extends SupportFragment {
             });
             allPageViews[x] = view;
 
-            RadioButton tip = new RadioButton(aty);
+            RadioButton tip = new RadioButton(rootView.getContext());
             tip.setBackgroundResource(R.drawable.selector_bg_tip);
             RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
                     8, 8);

@@ -24,13 +24,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.kymjs.chat.ChatActivity.OnChatItemClickListener;
 import org.kymjs.chat.R;
+import org.kymjs.chat.StringUtils;
 import org.kymjs.chat.UrlUtils;
 import org.kymjs.chat.bean.Message;
-import org.kymjs.kjframe.KJBitmap;
-import org.kymjs.kjframe.utils.StringUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,6 @@ public class ChatAdapter extends BaseAdapter {
 
     private final Context cxt;
     private List<Message> datas = null;
-    private KJBitmap kjb;
     private OnChatItemClickListener listener;
 
     public ChatAdapter(Context cxt, List<Message> datas, OnChatItemClickListener listener) {
@@ -50,7 +51,6 @@ public class ChatAdapter extends BaseAdapter {
             datas = new ArrayList<Message>(0);
         }
         this.datas = datas;
-        kjb = new KJBitmap();
         this.listener = listener;
     }
 
@@ -119,23 +119,19 @@ public class ChatAdapter extends BaseAdapter {
             holder.img_chatimage.setVisibility(View.GONE);
             holder.tv_chatcontent.setVisibility(View.VISIBLE);
             if (data.getContent().contains("href")) {
-                holder.tv_chatcontent = UrlUtils.handleHtmlText(holder.tv_chatcontent, data
-                        .getContent());
+                UrlUtils.handleHtmlText(holder.tv_chatcontent, data.getContent());
             } else {
-                holder.tv_chatcontent = UrlUtils.handleText(holder.tv_chatcontent, data
-                        .getContent());
+                UrlUtils.handleText(holder.tv_chatcontent, data.getContent());
             }
         } else {
             holder.tv_chatcontent.setVisibility(View.GONE);
             holder.img_chatimage.setVisibility(View.VISIBLE);
-
-            //如果内存缓存中有要显示的图片，且要显示的图片不是holder复用的图片，则什么也不做，否则显示一张加载中的图片
-            if (kjb.getMemoryCache(data.getContent()) != null && data.getContent() != null &&
-                    data.getContent().equals(holder.img_chatimage.getTag())) {
+            String url = data.getContent();
+            if (url != null && url.startsWith("http")) {
+                Glide.with(cxt).load(url).into(holder.img_chatimage);
             } else {
-                holder.img_chatimage.setImageResource(R.drawable.default_head);
+                Glide.with(cxt).load(new File(url)).into(holder.img_chatimage);
             }
-            kjb.display(holder.img_chatimage, data.getContent(), 300, 300);
         }
 
         //如果是表情或图片，则不显示气泡，如果是图片则显示气泡
@@ -151,9 +147,9 @@ public class ChatAdapter extends BaseAdapter {
 
         //显示头像
         if (data.getIsSend()) {
-            kjb.display(holder.img_avatar, data.getFromUserAvatar());
+            Glide.with(cxt).load(data.getFromUserAvatar()).placeholder(R.drawable.default_head).into(holder.img_avatar);
         } else {
-            kjb.display(holder.img_avatar, data.getToUserAvatar());
+            Glide.with(cxt).load(data.getToUserAvatar()).placeholder(R.drawable.default_head).into(holder.img_avatar);
         }
 
         if (listener != null) {

@@ -18,12 +18,17 @@ package org.kymjs.chat;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.kymjs.chat.adapter.ChatAdapter;
 import org.kymjs.chat.bean.Emojicon;
@@ -31,10 +36,6 @@ import org.kymjs.chat.bean.Faceicon;
 import org.kymjs.chat.bean.Message;
 import org.kymjs.chat.emoji.DisplayRules;
 import org.kymjs.chat.widget.KJChatKeyboard;
-import org.kymjs.kjframe.KJActivity;
-import org.kymjs.kjframe.ui.ViewInject;
-import org.kymjs.kjframe.utils.FileUtils;
-import org.kymjs.kjframe.utils.KJLoger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ import java.util.Random;
 /**
  * 聊天主界面
  */
-public class ChatActivity extends KJActivity {
+public class ChatActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0x1;
 
@@ -56,13 +57,9 @@ public class ChatActivity extends KJActivity {
     private ChatAdapter adapter;
 
     @Override
-    public void setRootView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-    }
-
-    @Override
-    public void initWidget() {
-        super.initWidget();
         box = (KJChatKeyboard) findViewById(R.id.chat_msg_input_box);
         mRealListView = (ListView) findViewById(R.id.chat_listview);
 
@@ -110,14 +107,13 @@ public class ChatActivity extends KJActivity {
                         goToAlbum();
                         break;
                     case 1:
-                        ViewInject.toast("跳转相机");
+                        Toast.makeText(getApplication(), "跳转相机，只做演示", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
         });
 
         List<String> faceCagegory = new ArrayList<>();
-//        File faceList = FileUtils.getSaveFolder("chat");
         File faceList = new File("");
         if (faceList.isDirectory()) {
             File[] faceFolderArray = faceList.listFiles();
@@ -146,7 +142,7 @@ public class ChatActivity extends KJActivity {
                 true, true, new Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 8));
         Message message2 = new Message(Message.MSG_TYPE_PHOTO,
                 Message.MSG_STATE_SUCCESS, "Tom", "avatar", "Jerry", "avatar",
-                "http://static.oschina.net/uploads/space/2015/0611/103706_rpPc_1157342.png",
+                "https://kymjs.com/qiniu/image/logo_550x440.png",
                 false, true, new Date(
                 System.currentTimeMillis() - (1000 * 60 * 60 * 24) * 7));
         Message message6 = new Message(Message.MSG_TYPE_TEXT,
@@ -207,19 +203,10 @@ public class ChatActivity extends KJActivity {
      */
     private void goToAlbum() {
         Intent intent;
-        if (Build.VERSION.SDK_INT < 19) {
-            intent = new Intent();
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            intent.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent, "选择图片"),
-                    REQUEST_CODE_GETIMAGE_BYSDCARD);
-        } else {
-            intent = new Intent(Intent.ACTION_PICK,
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent, "选择图片"),
-                    REQUEST_CODE_GETIMAGE_BYSDCARD);
-        }
+        intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "选择图片"),
+                REQUEST_CODE_GETIMAGE_BYSDCARD);
 
     }
 
@@ -232,7 +219,7 @@ public class ChatActivity extends KJActivity {
         if (requestCode == REQUEST_CODE_GETIMAGE_BYSDCARD) {
             Uri dataUri = data.getData();
             if (dataUri != null) {
-                File file = FileUtils.uri2File(aty, dataUri);
+                File file = FileUtils.uri2File(ChatActivity.this, dataUri);
                 Message message = new Message(Message.MSG_TYPE_PHOTO, Message.MSG_STATE_SUCCESS,
                         "Tom", "avatar", "Jerry",
                         "avatar", file.getAbsolutePath(), true, true, new Date());
@@ -252,7 +239,7 @@ public class ChatActivity extends KJActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 box.hideLayout();
-                box.hideKeyboard(aty);
+                box.hideKeyboard(ChatActivity.this);
                 return false;
             }
         };
@@ -265,8 +252,8 @@ public class ChatActivity extends KJActivity {
         return new OnChatItemClickListener() {
             @Override
             public void onPhotoClick(int position) {
-                KJLoger.debug(datas.get(position).getContent() + "点击图片的");
-                ViewInject.toast(aty, datas.get(position).getContent() + "点击图片的");
+                Log.d("debug", datas.get(position).getContent() + "点击图片的");
+                Toast.makeText(ChatActivity.this, datas.get(position).getContent() + "点击图片的", Toast.LENGTH_SHORT).show();
             }
 
             @Override

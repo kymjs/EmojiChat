@@ -1,1 +1,1 @@
-include ':app', ':chat'
+include ':app', ':chat', ":emoji"

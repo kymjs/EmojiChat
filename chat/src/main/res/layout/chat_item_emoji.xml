@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rockerhieu.emojicon.EmojiconTextView
+<io.github.rockerhieu.emojicon.EmojiconTextView
     android:id="@+id/itemEmoji"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="33dp"
