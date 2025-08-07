@@ -24,6 +24,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.github.kymjs.emoji.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

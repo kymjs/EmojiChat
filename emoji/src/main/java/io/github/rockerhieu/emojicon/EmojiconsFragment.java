@@ -34,6 +34,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.github.kymjs.emoji.R;
+
 import java.util.Arrays;
 import java.util.List;
 

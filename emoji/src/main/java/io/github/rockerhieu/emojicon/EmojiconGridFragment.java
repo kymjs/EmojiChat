@@ -27,6 +27,8 @@ import android.widget.GridView;
 
 import androidx.fragment.app.Fragment;
 
+import com.github.kymjs.emoji.R;
+
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
 import io.github.rockerhieu.emojicon.emoji.People;
 

@@ -34,6 +34,8 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.github.kymjs.emoji.R;
+
 import java.util.Arrays;
 import java.util.List;
 

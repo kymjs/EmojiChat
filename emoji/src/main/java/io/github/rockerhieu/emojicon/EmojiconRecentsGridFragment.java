@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 
+import com.github.kymjs.emoji.R;
+
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
 
 /**

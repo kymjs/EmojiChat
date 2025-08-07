@@ -25,6 +25,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.github.kymjs.emoji.R;
+
 /**
  * @author Hieu Rocker (rockerhieu@gmail.com).
  */

@@ -23,6 +23,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 
+import com.github.kymjs.emoji.R;
+
 public class EmojiconMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTextView {
     private int mEmojiconSize;
     private int mEmojiconAlignment;

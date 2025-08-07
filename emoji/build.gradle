@@ -1,17 +1,19 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
+
+group = 'com.github.kymjs'
+version = "2.0.1"
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.2"
+    namespace = 'com.github.kymjs.emoji'
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-    }
-    lintOptions {
-        abortOnError false
+        minSdk 17
+        targetSdk 35
+        versionCode 201
+        versionName version
     }
 }
 

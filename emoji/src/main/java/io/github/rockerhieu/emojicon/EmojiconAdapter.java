@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.github.kymjs.emoji.R;
+
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
 
 import java.util.List;

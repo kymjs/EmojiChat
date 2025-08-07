@@ -19,6 +19,8 @@ import android.content.Context;
 import android.text.Spannable;
 import android.util.SparseIntArray;
 
+import com.github.kymjs.emoji.R;
+
 import java.util.HashMap;
 import java.util.Map;
 
