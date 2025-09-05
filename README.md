@@ -25,12 +25,12 @@
 
 ## 运行截图
 
-![截图1](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_1.png)
-![截图2](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_2.png)
-![截图3](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_3.png)
-![截图4](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_4.png)
-![截图5](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_5.png)
-![截图6](http://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_6.png)
+![截图1](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_1.png)
+![截图2](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_2.png)
+![截图3](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_3.png)
+![截图4](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_4.png)
+![截图5](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_5.png)
+![截图6](https://cdn.kymjs.com:8843/qiniu/image/emojichat/Screenshot_6.png)
 
 ## 开源协议
 ```
@@ -48,3 +48,5 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  ```
+
+<img src="https://cdn.kymjs.com:8843/qiniu/image/qrcode_transfer_emojichat.png" width="50%" max-width="200" alt="在线乞讨"/>
